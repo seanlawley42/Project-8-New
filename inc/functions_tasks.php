@@ -39,7 +39,7 @@ function getTask($task_id)
     }
     return $task;
 }
-function createTask($data, $userid)
+function createTask($data)
 {
     global $db;
 
@@ -47,7 +47,7 @@ function createTask($data, $userid)
         $statement = $db->prepare('INSERT INTO tasks (task, status, userid) VALUES (:task, :status, :userid)');
         $statement->bindParam('task', $data['task']);
         $statement->bindParam('status', $data['status']);
-        $statement->bindParam('userid', $userid);
+        $statement->bindParam('userid', $data['userid']);
         $statement->execute();
     } catch (Exception $e) {
         echo "Error!: " . $e->getMessage() . "<br />";

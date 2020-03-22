@@ -17,12 +17,12 @@ case "add":
     if (empty($task)) {
         $session->getFlashBag()->add('error', 'Please enter a task');
     } else {
-        if (createTask(['task'=>$task, 'status'=>$status])) {
+        if (createTask(['task'=>$task, 'status'=>$status, 'userid'=>$userid])) {
             $session->getFlashBag()->add('success', 'New Task Added');
         }
     }
     break;
-    case "update":
+case "update":
     $data = ['task_id'=>$task_id, 'task'=>$task, 'status'=>$status];
     if (!isOwner($userid))
     {  $session->getFlashBag()->add('error', 'Not Authorized');
